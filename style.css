@@ -1,0 +1,29 @@
+body {
+    font-family: "Trebuchet MS", "Helvetica", sans-serif;
+}
+
+:root {
+    --footer-text: rgb(84, 84, 84);
+}
+
+.textarea {
+    display: block;
+    width: 700px;
+    height: 200px;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444444;
+}
+
+.footer {
+    width: 100%;
+    color: var(--footer-text);
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    justify-content: center;
+    letter-spacing: 1px;
+    font-size: 1.07rem;
+    font-weight: 300;
+}
