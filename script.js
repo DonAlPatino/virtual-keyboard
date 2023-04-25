@@ -16,3 +16,4 @@ footer.className = 'footer';
 footer.innerHTML += ('Клавиатура создана в операционной системе Windows<br>'
     + 'Для переключения языка комбинация: левыe ctrl + alt');
 body.appendChild(footer);
+textarea.focus();
