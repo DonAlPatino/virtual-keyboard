@@ -27,7 +27,7 @@ const keysEnglish = {
   BracketLeft: ['[', '{'],
   BracketRight: [']', '}'],
   Backslash: ['\\', '|'],
-  Delete: 'Delete',
+  Delete: 'Del',
   CapsLock: 'Caps Lock',
   KeyA: ['a', 'A'],
   KeyS: ['s', 'S'],

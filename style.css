@@ -1,9 +1,22 @@
 body {
     font-family: "Trebuchet MS", "Helvetica", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
 }
 
 :root {
     --footer-text: rgb(84, 84, 84);
+    --shadow: 4px 4px 6px #7c7c7c, -5px -5px 10px #ffffff;
+    --keyboard-background: #e6e6e6;
+    --keyboard-background-color: #f3f7fc;
+    --keyboard-gradient: linear-gradient(
+            145deg,
+            rgb(204, 204, 204) 0%,
+            rgb(235, 234, 234) 45%,
+            rgb(170, 170, 170) 100%
+    );
 }
 
 .textarea {
@@ -14,13 +27,14 @@ body {
     padding: 10px;
     font-size: 18px;
     color: #444444;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
 }
 
 .footer {
     width: 100%;
     color: var(--footer-text);
     text-align: center;
-    margin-bottom: 25px;
     text-transform: uppercase;
     justify-content: center;
     letter-spacing: 1px;
@@ -31,6 +45,15 @@ body {
 .keyboard {
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
+    width: 95%;
+    max-width: 1050px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--keyboard-background);
+    background-color: var(--keyboard-background-color);
+    background-image: var(--keyboard-gradient);
+    box-shadow: var(--shadow);
 }
 
 .keyboard__row {
@@ -41,4 +64,23 @@ body {
 .keyboard__key{
     justify-content: center;
     align-items: center;
+    padding: 5px;
+    min-width: 5%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keyboard__key_spec {
+    justify-content: space-around;
+}
+
+.keyboard__key_wide {
+    flex-grow: 1;
+}
+
+.keyboard__key_double {
+    min-width: 11.5%;
 }

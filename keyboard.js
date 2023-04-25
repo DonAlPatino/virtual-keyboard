@@ -34,13 +34,17 @@ class Keyboard {
           const down = document.createElement('div');
           down.textContent = keys[item][0];
           button.appendChild(down);
-
+          button.classList.add('keyboard__key_spec');
         }
       }
       else {
-
+        if (keys[item].match(/Backspace|Del|Tab|CapsLock|Enter|Shift| /)) {
+          button.classList.add('keyboard__key_wide');
+        }
+        if (keys[item].match(/Ctrl/)) {
+          button.classList.add('keyboard__key_double');
+        }
           button.textContent = keys[item];
-
       }
 
       button.dataset.code = item;
