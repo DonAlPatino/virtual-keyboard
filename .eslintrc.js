@@ -8,5 +8,6 @@ module.exports = {
   },
   rules: {
     'linebreak-style': ['error', 'windows'],
+    'import/extensions': [2, 'always'],
   },
 };

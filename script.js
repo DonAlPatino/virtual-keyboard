@@ -1,3 +1,5 @@
+import Keyboard from './keyboard.js';
+
 // Textarea
 const { body } = document;
 const textarea = document.createElement('textarea');
@@ -7,6 +9,7 @@ textarea.cols = 50;
 textarea.rows = 5;
 body.appendChild(textarea);
 // Keyboard
+const kbd = new Keyboard(body);
 // Footer
 const footer = document.createElement('div');
 footer.className = 'footer';

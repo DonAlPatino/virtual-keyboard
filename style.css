@@ -27,3 +27,18 @@ body {
     font-size: 1.07rem;
     font-weight: 300;
 }
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.keyboard__row {
+    display: flex;
+    column-gap: 9px;
+}
+
+.keyboard__key{
+    justify-content: center;
+    align-items: center;
+}
