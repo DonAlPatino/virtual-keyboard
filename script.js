@@ -9,7 +9,8 @@ textarea.cols = 50;
 textarea.rows = 5;
 body.appendChild(textarea);
 // Keyboard
-const kbd = new Keyboard(body);
+const kbd = new Keyboard(textarea);
+body.appendChild(kbd.getNode());
 // Footer
 const footer = document.createElement('div');
 footer.className = 'footer';
@@ -17,3 +18,7 @@ footer.innerHTML += ('Клавиатура создана в операцион�
     + 'Для переключения языка комбинация: левыe ctrl + alt');
 body.appendChild(footer);
 textarea.focus();
+
+kbd.getNode().addEventListener('click', (e) => {
+  kbd.clickButtonHandler(e);
+});
