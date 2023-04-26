@@ -1,11 +1,13 @@
 import keysEnglish from './keysEnglish.js';
+import keysRussian from './keysRussian.js';
 
 class Keyboard {
   constructor(textarea) {
     this.capsBtn = false;
     this.shiftBtn = false;
     this.textarea = textarea;
-    this.keys = keysEnglish;
+    //this.keys = keysEnglish;
+    this.keys = keysRussian;
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
     const buttonCodes = Object.keys(this.keys);
