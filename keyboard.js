@@ -1,4 +1,4 @@
-import keysEnglish from './keys.js';
+import keysEnglish from './keysEnglish.js';
 
 class Keyboard {
   constructor(body) {
