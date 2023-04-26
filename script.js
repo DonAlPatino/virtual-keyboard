@@ -15,7 +15,7 @@ body.appendChild(kbd.getNode());
 const footer = document.createElement('div');
 footer.className = 'footer';
 footer.innerHTML += ('Клавиатура создана в операционной системе Windows<br>'
-    + 'Для переключения языка комбинация: левыe ctrl + alt');
+    + 'Для переключения языка комбинация: левыe ctrl + shift');
 body.appendChild(footer);
 textarea.focus();
 

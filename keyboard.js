@@ -6,8 +6,9 @@ class Keyboard {
     this.capsBtn = false;
     this.shiftBtn = false;
     this.textarea = textarea;
-    //this.keys = keysEnglish;
-    this.keys = keysRussian;
+    this.language = localStorage.getItem('language') ? localStorage.getItem('language') : 'en';
+    this.keys = this.language === 'en' ? keysEnglish : keysRussian;
+
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
     const buttonCodes = Object.keys(this.keys);
@@ -35,7 +36,9 @@ class Keyboard {
           [button.textContent] = this.keys[item];
         } else {
           const up = document.createElement('div');
+          up.className = 'up';
           const down = document.createElement('div');
+          down.className = 'down';
           [down.textContent, up.textContent] = this.keys[item];
           button.appendChild(up);
           button.appendChild(down);
@@ -114,7 +117,38 @@ class Keyboard {
   }
 
   switchLanguage() {
-    console.log('Switch language');
+    this.language = this.language === 'en' ? 'ru' : 'en';
+    this.keys = this.language === 'en' ? keysEnglish : keysRussian;
+    localStorage.setItem('language', this.language);
+    const keyBtns = document.querySelectorAll('.keyboard__key');
+
+    keyBtns.forEach((btn) => {
+      const {
+        dataset: { code },
+      } = btn;
+      if (Array.isArray(this.keys[code])) {
+        const button = btn;
+        if (this.keys[code][0].match(/[a-zа-яё]/)) {
+          [button.textContent] = this.keys[code];
+        } else {
+          let up = btn.querySelectorAll('.up')[0];
+          if (up == null) {
+            button.textContent = '';
+            up = document.createElement('div');
+            up.className = 'up';
+            btn.appendChild(up);
+          }
+          [, up.textContent] = this.keys[code];
+          let down = btn.querySelectorAll('.down')[0];
+          if (down == null) {
+            down = document.createElement('div');
+            down.className = 'up';
+            btn.appendChild(down);
+          }
+          [down.textContent] = this.keys[code];
+        }
+      }
+    });
   }
 }
 
