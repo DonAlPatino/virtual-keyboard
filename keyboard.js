@@ -114,9 +114,19 @@ class Keyboard {
     let selEnd = this.textarea.selectionEnd;
     const left = this.textarea.value.slice(0, selStart);
     const right = this.textarea.value.slice(selEnd);
-    selStart += 1;
-    selEnd = selStart;
-    this.textarea.value = `${left}${symbol || ''}${right}`;
+    switch (code) {
+      case 'Space':
+        this.textarea.value = `${left} ${right}`;
+        selStart += 1;
+        if (!this.shiftBtn) {
+          selEnd = selStart;
+        }
+        break;
+      default:
+        selStart += 1;
+        selEnd = selStart;
+        this.textarea.value = `${left}${symbol || ''}${right}`;
+    }
     this.textarea.setSelectionRange(selStart, selEnd);
   }
 
