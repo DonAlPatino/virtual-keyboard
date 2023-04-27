@@ -68,7 +68,7 @@ class Keyboard {
     const {
       dataset: { code },
     } = keyDiv;
-
+    this.playSound();
     switch (code) {
       case 'CapsLock':
         this.capsBtn = !this.capsBtn;
@@ -153,11 +153,11 @@ class Keyboard {
   }
 
   keyHandlerDown(e) {
+    this.playSound();
     if (Object.keys(this.keys).includes(e.code)) {
       if (e.code === 'CapsLock') {
         this.capsBtn = !this.capsBtn;
         document.querySelector('button[data-code="CapsLock"]').classList.toggle('keyboard__key_pressed');
-        // playSound();
         return;
       }
       if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
@@ -194,6 +194,11 @@ class Keyboard {
       }
       document.querySelector(`button[data-code="${e.code}"]`).classList.remove('keyboard__key_pressed');
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  playSound() {
+    new Audio('sound.mp3').play();
   }
 }
 export default Keyboard;
