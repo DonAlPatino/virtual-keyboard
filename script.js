@@ -22,3 +22,20 @@ textarea.focus();
 kbd.getNode().addEventListener('click', (e) => {
   kbd.clickButtonHandler(e);
 });
+
+window.addEventListener('keydown', (e) => {
+  if (e.code !== 'MetaLeft') {
+    e.preventDefault();
+    kbd.keyHandlerDown(e);
+  } else {
+    document.querySelector(`button[data-code="${e.code}"]`).classList.add('keyboard__key_pressed');
+  }
+});
+window.addEventListener('keyup', (e) => {
+  if (e.code !== 'MetaLeft') {
+    e.preventDefault();
+    kbd.keyHandlerUp(e);
+  } else {
+    document.querySelector(`button[data-code="${e.code}"]`).classList.remove('keyboard__key_pressed');
+  }
+});

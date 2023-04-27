@@ -5,6 +5,7 @@ class Keyboard {
   constructor(textarea) {
     this.capsBtn = false;
     this.shiftBtn = false;
+    this.ctrlBtn = false;
     this.textarea = textarea;
     this.language = localStorage.getItem('language') ? localStorage.getItem('language') : 'en';
     this.keys = this.language === 'en' ? keysEnglish : keysRussian;
@@ -150,6 +151,49 @@ class Keyboard {
       }
     });
   }
-}
 
+  keyHandlerDown(e) {
+    if (Object.keys(this.keys).includes(e.code)) {
+      if (e.code === 'CapsLock') {
+        this.capsBtn = !this.capsBtn;
+        document.querySelector('button[data-code="CapsLock"]').classList.toggle('keyboard__key_pressed');
+        // playSound();
+        return;
+      }
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+        if (this.shiftBtn) return;
+        this.shiftBtn = true;
+        // switchShift();
+      }
+
+      if (e.code === 'ControlLeft') {
+        this.ctrlBtn = true;
+      }
+
+      if (this.shiftBtn && this.ctrlBtn) {
+        this.switchLanguage();
+      }
+      this.outputSymbol(e.code);
+    }
+    document.querySelector(`button[data-code="${e.code}"]`).classList.add('keyboard__key_pressed');
+  }
+
+  keyHandlerUp(e) {
+    if (Object.keys(this.keys).includes(e.code)) {
+      if (e.code === 'CapsLock') {
+        return;
+      }
+
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+        this.shiftBtn = false;
+        // switchShift();
+      }
+
+      if (e.code === 'ControlLeft') {
+        this.ctrlBtn = false;
+      }
+      document.querySelector(`button[data-code="${e.code}"]`).classList.remove('keyboard__key_pressed');
+    }
+  }
+}
 export default Keyboard;

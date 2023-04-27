@@ -55,7 +55,7 @@ const keysRussian = {
   ArrowUp: '▲',
   ShiftRight: 'Shift',
   ControlLeft: 'Ctrl',
-  Win: 'Win',
+  MetaLeft: 'Win',
   AltLeft: 'Alt',
   Space: ' ',
   AltRight: 'Alt',
