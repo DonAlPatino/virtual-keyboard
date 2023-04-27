@@ -1,6 +1,9 @@
 import keysEnglish from './keysEnglish.js';
 import keysRussian from './keysRussian.js';
 
+function playSound() {
+  new Audio('sound.mp3').play();
+}
 class Keyboard {
   constructor(textarea) {
     this.capsBtn = false;
@@ -68,7 +71,7 @@ class Keyboard {
     const {
       dataset: { code },
     } = keyDiv;
-    this.playSound();
+    playSound();
     switch (code) {
       case 'CapsLock':
         this.capsBtn = !this.capsBtn;
@@ -111,8 +114,8 @@ class Keyboard {
     let selEnd = this.textarea.selectionEnd;
     const left = this.textarea.value.slice(0, selStart);
     const right = this.textarea.value.slice(selEnd);
-    // eslint-disable-next-line no-plusplus
-    selEnd = ++selStart;
+    selStart += 1;
+    selEnd = selStart;
     this.textarea.value = `${left}${symbol || ''}${right}`;
     this.textarea.setSelectionRange(selStart, selEnd);
   }
@@ -153,7 +156,7 @@ class Keyboard {
   }
 
   keyHandlerDown(e) {
-    this.playSound();
+    playSound();
     if (Object.keys(this.keys).includes(e.code)) {
       if (e.code === 'CapsLock') {
         this.capsBtn = !this.capsBtn;
@@ -195,10 +198,6 @@ class Keyboard {
       document.querySelector(`button[data-code="${e.code}"]`).classList.remove('keyboard__key_pressed');
     }
   }
-
-  // eslint-disable-next-line class-methods-use-this
-  playSound() {
-    new Audio('sound.mp3').play();
-  }
 }
+
 export default Keyboard;
