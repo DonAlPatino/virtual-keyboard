@@ -62,7 +62,7 @@ class Keyboard {
   }
 
   clickButtonHandler(e) {
-    e.stopPropagation();
+    // e.stopPropagation();
     const keyDiv = e.target.closest('.keyboard__key');
     if (!keyDiv) return;
     const {
