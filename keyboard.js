@@ -131,7 +131,7 @@ class Keyboard {
         if (this.keys[code][0].match(/[a-zа-яё]/)) {
           [button.textContent] = this.keys[code];
         } else {
-          let up = btn.querySelectorAll('.up')[0];
+          let up = btn.querySelector('.up');
           if (up == null) {
             button.textContent = '';
             up = document.createElement('div');
@@ -139,10 +139,10 @@ class Keyboard {
             btn.appendChild(up);
           }
           [, up.textContent] = this.keys[code];
-          let down = btn.querySelectorAll('.down')[0];
+          let down = btn.querySelector('.down');
           if (down == null) {
             down = document.createElement('div');
-            down.className = 'up';
+            down.className = 'down';
             btn.appendChild(down);
           }
           [down.textContent] = this.keys[code];
