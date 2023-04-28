@@ -122,6 +122,20 @@ class Keyboard {
           selEnd = selStart;
         }
         break;
+      case 'Tab':
+        this.textarea.value = `${left}\t${right}`;
+        selStart += 1;
+        if (!this.shiftBtn) {
+          selEnd = selStart;
+        }
+        break;
+      case 'Enter':
+        this.textarea.value = `${left}\n${right}`;
+        selStart += 1;
+        if (!this.shiftBtn) {
+          selEnd = selStart;
+        }
+        break;
       default:
         selStart += 1;
         selEnd = selStart;
