@@ -115,6 +115,10 @@ class Keyboard {
     const left = this.textarea.value.slice(0, selStart);
     const right = this.textarea.value.slice(selEnd);
     switch (code) {
+      case 'ControlRight':
+      case 'AltRight':
+      case 'AltLeft':
+        break;
       case 'Backspace':
         this.textarea.value = `${left.slice(0, -1)}${right}`;
         selStart -= 1;
@@ -190,20 +194,26 @@ class Keyboard {
         document.querySelector('button[data-code="CapsLock"]').classList.toggle('keyboard__key_pressed');
         return;
       }
-      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-        if (this.shiftBtn) return;
-        this.shiftBtn = true;
-        // switchShift();
+      switch (e.code) {
+        case 'ShiftLeft':
+        case 'ShiftRight':
+          if (this.shiftBtn) return;
+          this.shiftBtn = true;
+          if (this.shiftBtn && this.ctrlBtn) {
+            this.switchLanguage();
+          }
+          document.querySelector('button[data-code="ShiftLeft"]').classList.toggle('keyboard__key_pressed');
+          document.querySelector('button[data-code="ShiftRight"]').classList.toggle('keyboard__key_pressed');
+          break;
+        case 'ControlLeft':
+          this.ctrlBtn = true;
+          if (this.shiftBtn && this.ctrlBtn) {
+            this.switchLanguage();
+          }
+          break;
+        default:
+          this.outputSymbol(e.code);
       }
-
-      if (e.code === 'ControlLeft') {
-        this.ctrlBtn = true;
-      }
-
-      if (this.shiftBtn && this.ctrlBtn) {
-        this.switchLanguage();
-      }
-      this.outputSymbol(e.code);
       document.querySelector(`button[data-code="${e.code}"]`).classList.add('keyboard__key_pressed');
     }
   }
@@ -216,6 +226,9 @@ class Keyboard {
 
       if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
         this.shiftBtn = false;
+        document.querySelector('button[data-code="ShiftLeft"]').classList.toggle('keyboard__key_pressed');
+        document.querySelector('button[data-code="ShiftRight"]').classList.toggle('keyboard__key_pressed');
+        return;
         // switchShift();
       }
 
