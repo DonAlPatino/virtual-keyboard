@@ -115,6 +115,11 @@ class Keyboard {
     const left = this.textarea.value.slice(0, selStart);
     const right = this.textarea.value.slice(selEnd);
     switch (code) {
+      case 'Backspace':
+        this.textarea.value = `${left.slice(0, -1)}${right}`;
+        selStart -= 1;
+        selEnd = selStart;
+        break;
       case 'Space':
         this.textarea.value = `${left} ${right}`;
         selStart += 1;
@@ -128,6 +133,10 @@ class Keyboard {
       case 'Enter':
         this.textarea.value = `${left}\n${right}`;
         selStart += 1;
+        selEnd = selStart;
+        break;
+      case 'ArrowLeft':
+        selStart = selStart - 1 >= 0 ? selStart - 1 : 0;
         selEnd = selStart;
         break;
       default:
@@ -195,8 +204,8 @@ class Keyboard {
         this.switchLanguage();
       }
       this.outputSymbol(e.code);
+      document.querySelector(`button[data-code="${e.code}"]`).classList.add('keyboard__key_pressed');
     }
-    document.querySelector(`button[data-code="${e.code}"]`).classList.add('keyboard__key_pressed');
   }
 
   keyHandlerUp(e) {
