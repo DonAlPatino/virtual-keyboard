@@ -13,7 +13,7 @@ const keysRussian = {
   Minus: ['-', '_'],
   Equal: ['=', '+'],
   Backspace: 'Backspace',
-  Tab: 'tab',
+  Tab: 'Tab',
   KeyQ: ['й', 'Й'],
   KeyW: ['ц', 'Ц'],
   KeyE: ['у', 'У'],

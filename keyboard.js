@@ -95,6 +95,8 @@ class Keyboard {
 
   outputSymbol(code) {
     let symbol = '';
+    let currPositionSubStr = '';
+    let currStrPos = 0;
 
     if (Array.isArray(this.keys[code])) {
       if (this.shiftBtn) {
@@ -124,6 +126,9 @@ class Keyboard {
         selStart -= 1;
         selEnd = selStart;
         break;
+      case 'Delete':
+        this.textarea.value = `${left}${right.slice(0, -1)}`;
+        break;
       case 'Space':
         this.textarea.value = `${left} ${right}`;
         selStart += 1;
@@ -142,6 +147,22 @@ class Keyboard {
       case 'ArrowLeft':
         selStart = selStart - 1 >= 0 ? selStart - 1 : 0;
         selEnd = selStart;
+        break;
+      case 'ArrowRight':
+        selEnd += 1;
+        selStart = selEnd;
+        break;
+      case 'ArrowUp':
+        symbol = '▲';
+        selStart += 1;
+        selEnd = selStart;
+        this.textarea.value = `${left}${symbol || ''}${right}`;
+        break;
+      case 'ArrowDown':
+        symbol = '▼';
+        selStart += 1;
+        selEnd = selStart;
+        this.textarea.value = `${left}${symbol || ''}${right}`;
         break;
       default:
         selStart += 1;
