@@ -23,6 +23,40 @@ class Keyboard {
     this.keyboard.appendChild(this.createRowButtons(buttonCodes.slice(55, buttonCodes.length)));
   }
 
+  handleCase() {
+    const keys = document.querySelectorAll('.keyboard__key_simple');
+    if (this.capsBtn && this.shiftBtn) {
+      keys.forEach((element) => {
+        element.classList.remove('keyboard__key_upper');
+      });
+    } else if (this.capsBtn || this.shiftBtn) {
+      keys.forEach((element) => {
+        element.classList.add('keyboard__key_upper');
+      });
+    } else {
+      keys.forEach((element) => {
+        element.classList.remove('keyboard__key_upper');
+      });
+    }
+    const up = document.querySelectorAll('.keyboard__key_spec .up');
+    const down = document.querySelectorAll('.keyboard__key_spec .down');
+    if (this.shiftBtn) {
+      up.forEach((element) => {
+        element.classList.add('keyboard__key_up');
+      });
+      down.forEach((element) => {
+        element.classList.add('keyboard__key_down');
+      });
+    } else {
+      up.forEach((element) => {
+        element.classList.remove('keyboard__key_up');
+      });
+      down.forEach((element) => {
+        element.classList.remove('keyboard__key_down');
+      });
+    }
+  }
+
   getNode() {
     return this.keyboard;
   }
@@ -38,6 +72,7 @@ class Keyboard {
       if (Array.isArray(this.keys[item])) {
         if (this.keys[item][0].match(/[a-zа-яё]/)) {
           [button.textContent] = this.keys[item];
+          button.classList.add('keyboard__key_simple');
         } else {
           const up = document.createElement('div');
           up.className = 'up';
@@ -73,15 +108,20 @@ class Keyboard {
     } = keyDiv;
     playSound();
     switch (code) {
+      case 'MetaLeft':
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'MetaLeft' }));
+        break;
       case 'CapsLock':
         this.capsBtn = !this.capsBtn;
         document.querySelector('button[data-code="CapsLock"]').classList.toggle('keyboard__key_pressed');
+        this.handleCase();
         break;
       case 'ShiftLeft':
       case 'ShiftRight':
         this.shiftBtn = !this.shiftBtn;
         document.querySelector('button[data-code="ShiftLeft"]').classList.toggle('keyboard__key_pressed');
         document.querySelector('button[data-code="ShiftRight"]').classList.toggle('keyboard__key_pressed');
+        this.handleCase();
         break;
       case 'ControlLeft':
         if (this.shiftBtn) {
@@ -95,15 +135,21 @@ class Keyboard {
 
   outputSymbol(code) {
     let symbol = '';
-    let currPositionSubStr = '';
-    let currStrPos = 0;
+/*    let currPositionSubStr = '';
+    let currStrPos = 0;*/
 
     if (Array.isArray(this.keys[code])) {
       if (this.shiftBtn) {
         [, symbol] = this.keys[code];
+        if (this.shiftBtn && this.capsBtn) {
+          symbol = symbol.toLowerCase();
+        }
       } else if (this.capsBtn) {
         if (this.keys[code][0].match(/[a-zа-яё]/)) {
           [, symbol] = this.keys[code];
+          if (this.shiftBtn && this.capsBtn) {
+            symbol = symbol.toLowerCase();
+          }
         } else {
           [symbol] = this.keys[code];
         }
@@ -213,6 +259,7 @@ class Keyboard {
       if (e.code === 'CapsLock') {
         this.capsBtn = !this.capsBtn;
         document.querySelector('button[data-code="CapsLock"]').classList.toggle('keyboard__key_pressed');
+        this.handleCase();
         return;
       }
       switch (e.code) {
@@ -225,6 +272,7 @@ class Keyboard {
           }
           document.querySelector('button[data-code="ShiftLeft"]').classList.toggle('keyboard__key_pressed');
           document.querySelector('button[data-code="ShiftRight"]').classList.toggle('keyboard__key_pressed');
+          this.handleCase();
           break;
         case 'ControlLeft':
           this.ctrlBtn = true;
@@ -242,6 +290,7 @@ class Keyboard {
   keyHandlerUp(e) {
     if (Object.keys(this.keys).includes(e.code)) {
       if (e.code === 'CapsLock') {
+        this.handleCase();
         return;
       }
 
@@ -249,6 +298,7 @@ class Keyboard {
         this.shiftBtn = false;
         document.querySelector('button[data-code="ShiftLeft"]').classList.toggle('keyboard__key_pressed');
         document.querySelector('button[data-code="ShiftRight"]').classList.toggle('keyboard__key_pressed');
+        this.handleCase();
         return;
         // switchShift();
       }
