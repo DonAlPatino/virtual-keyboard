@@ -2,7 +2,7 @@ import keysEnglish from './keysEnglish.js';
 import keysRussian from './keysRussian.js';
 
 function playSound() {
-  new Audio('sound.mp3').play();
+  new Audio('sound.mp3').play().then((r) => r);
 }
 class Keyboard {
   constructor(textarea) {
@@ -135,9 +135,6 @@ class Keyboard {
 
   outputSymbol(code) {
     let symbol = '';
-/*    let currPositionSubStr = '';
-    let currStrPos = 0;*/
-
     if (Array.isArray(this.keys[code])) {
       if (this.shiftBtn) {
         [, symbol] = this.keys[code];
