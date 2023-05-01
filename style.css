@@ -84,12 +84,29 @@ body {
     justify-content: space-around;
 }
 
+.keyboard__key_up {
+    font-size: 150%;
+    color: darkgrey;
+    font-weight: bold;
+    transition: all 0.3s
+}
+
+.keyboard__key_down {
+    font-size: 50%;
+    font-weight: lighter;
+    transition: all 0.3s
+}
+
 .keyboard__key_wide {
     flex-grow: 1;
 }
 
 .keyboard__key_double {
     min-width: 11.5%;
+}
+
+.keyboard__key_upper{
+    text-transform: uppercase;
 }
 
 .keyboard__key:hover {
