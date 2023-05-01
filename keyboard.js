@@ -229,7 +229,9 @@ class Keyboard {
         const button = btn;
         if (this.keys[code][0].match(/[a-zа-яё]/)) {
           [button.textContent] = this.keys[code];
+          button.classList.add('keyboard__key_simple');
         } else {
+          button.classList.remove('keyboard__key_simple');
           let up = btn.querySelector('.up');
           if (up == null) {
             button.textContent = '';
