@@ -29,7 +29,7 @@ const keysRussian = {
   Backslash: ['/', '|'],
   Delete: 'Del',
   CapsLock: 'Caps Lock',
-  KeyA: ['ф', 'ф'],
+  KeyA: ['ф', 'Ф'],
   KeyS: ['ы', 'Ы'],
   KeyD: ['в', 'В'],
   KeyF: ['а', 'А'],
