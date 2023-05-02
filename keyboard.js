@@ -2,7 +2,8 @@ import keysEnglish from './keysEnglish.js';
 import keysRussian from './keysRussian.js';
 
 function playSound() {
-  new Audio('sound.mp3').play().then((r) => r);
+  const textarea = document.querySelector('.textarea');
+  new Audio('sound.mp3').play().then(() => { textarea.focus(); }).catch(() => { textarea.focus(); });
 }
 class Keyboard {
   constructor(textarea) {
