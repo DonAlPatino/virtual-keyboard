@@ -171,7 +171,9 @@ class Keyboard {
         selEnd = selStart;
         break;
       case 'Delete':
-        this.textarea.value = `${left}${right.slice(0, -1)}`;
+        if (right !== '') {
+          this.textarea.value = `${left.slice(0, -1)}${right}`;
+        }
         break;
       case 'Space':
         this.textarea.value = `${left} ${right}`;
