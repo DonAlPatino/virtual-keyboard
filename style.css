@@ -1,0 +1,127 @@
+body {
+    font-family: "Trebuchet MS", "Helvetica", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+:root {
+    --footer-text: rgb(84, 84, 84);
+    --shadow: 4px 4px 6px #7c7c7c, -5px -5px 10px #ffffff;
+    --keyboard-background: #e6e6e6;
+    --keyboard-background-color: #f3f7fc;
+    --keyboard-gradient: linear-gradient(
+            145deg,
+            rgb(204, 204, 204) 0%,
+            rgb(235, 234, 234) 45%,
+            rgb(170, 170, 170) 100%
+    );
+    --orange: #ff9901;
+    --black: #000;
+    --key-shadow: inset rgba(0, 0, 0, 0.75) -1px -1px 2px, inset rgba(255, 255, 255) 1px 1px 2px, rgba(0, 0, 0, 0.8) 1px 1px 2px -1px;
+    --key-hover-shadow: inset rgba(88, 88, 88, 0.75) -2px -2px 3px, inset rgba(255, 255, 255) 1px 1px 2px,
+    rgba(224, 223, 223, 0.8) 1px 1px 2px -1px;
+}
+
+.textarea {
+    display: block;
+    width: 700px;
+    height: 200px;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444444;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.footer {
+    width: 100%;
+    color: var(--footer-text);
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+    letter-spacing: 1px;
+    font-size: 1.07rem;
+    font-weight: 300;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 95%;
+    max-width: 1050px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--keyboard-background);
+    background-color: var(--keyboard-background-color);
+    background-image: var(--keyboard-gradient);
+    box-shadow: var(--shadow);
+}
+
+.keyboard__row {
+    display: flex;
+    column-gap: 9px;
+}
+
+.keyboard__key{
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    min-width: 5%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--key-shadow);
+    transition: border-radius 0.3s, background-color 0.3s
+}
+
+.keyboard__key_spec {
+    justify-content: space-around;
+}
+
+.keyboard__key_up {
+    font-size: 150%;
+    color: darkgrey;
+    font-weight: bold;
+    transition: all 0.3s
+}
+
+.keyboard__key_down {
+    font-size: 50%;
+    font-weight: lighter;
+    transition: all 0.3s
+}
+
+.keyboard__key_wide {
+    flex-grow: 1;
+}
+
+.keyboard__key_double {
+    min-width: 11.5%;
+}
+
+.keyboard__key_upper{
+    text-transform: uppercase;
+}
+
+.keyboard__key:hover {
+    color: var(--black);
+    background: var(--orange);
+    box-shadow: var(--key-hover-shadow);
+    outline: none;
+}
+
+.keyboard__key_pressed,
+.keyboard__key:active {
+    color: var(--black);
+    background: var(--orange);
+    box-shadow: var(--key-hover-shadow);
+    outline: none;
+    transform: scale(0.95);
+    border-radius: 50px
+}
